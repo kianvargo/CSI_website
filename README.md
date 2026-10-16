@@ -1,8 +1,8 @@
 # CSI Website: Country Intelligence
 
 A single-page web atlas for **Cedars-Sinai International (CSI)**. It brings together CSI's draft country
-profiles and Cedars-Sinai's international partnerships on one interactive world map. Everything,
-including the downloadable documents, is built into one file, `index.html`.
+profiles and Cedars-Sinai's international partnerships on one interactive world map. The page is
+`index.html`; its documents, preview pages and photos are separate files in `files/`.
 
 > **Status:** research workspace, October 2026 snapshot. All profiles are **drafts that need analyst
 > review** before anyone relies on them or shares them outside CSI.
@@ -32,28 +32,41 @@ including the downloadable documents, is built into one file, `index.html`.
 
 No installation, build step or server is needed.
 
-- **Locally:** download `index.html` and open it in a recent version of Chrome, Edge, Firefox or Safari.
-- **Online:** turn on GitHub Pages for this repository (Settings → Pages → deploy from the `main` branch,
-  root folder). The site will then be at `https://kianvargo.github.io/CSI_website/`.
+- **Locally:** download the repository (keep `index.html` and the `files/` folder together) and open
+  `index.html` in a recent version of Chrome, Edge, Firefox or Safari.
+- **Online:** the site is hosted on Cloudflare, which is connected to this repository. Every push to
+  `main` triggers a Cloudflare build and deploy. Make changes on a branch and open a pull request so the
+  Cloudflare preview can be checked before merging.
 
-The page makes no network requests. The map, data, images and documents are all embedded, so it also
-works offline. Downloads are stored compressed inside the page and unpacked by the browser when you
-click them, which needs a modern browser that supports `DecompressionStream`.
+The page loads nothing from other websites. Documents, preview pages and photos are fetched from the
+`files/` folder only when needed, so the map opens quickly and downloads are ordinary file links.
 
 ## How it is built
 
-- One HTML file (~45 MB) with inline CSS and JavaScript, and no external libraries.
-- All content lives in a single `DATA` object inside the page:
-  - `profiles`: one entry per country (facts, research sections, document list, image, credit)
+```
+index.html            the page: map, code and a small DATA object (about 0.5 MB)
+files/*.docx, *.pdf   the 32 documents, downloaded when a visitor clicks
+files/previews/       page images for the document viewer
+files/images/         country cover photos
+tools/split_site.py   one-time script that moved the embedded files out of index.html
+```
+
+- All page content lives in the `DATA` object inside `index.html`:
+  - `profiles`: one entry per country (facts, research sections, document list, image path, credit)
   - `partners` / `sites`: partnership records and their map positions
   - `countries`: names for search
-  - `downloads`: the Word/PDF files, compressed and base85-encoded
-  - `previews`: page images for the document viewer
+  - `downloads`: each document's file path, type and size
+  - `previews`: page-image paths for the document viewer
+- **Adding a country:**
+  1. Put its six documents in `files/`, its preview pages in `files/previews/` and its photo in
+     `files/images/`.
+  2. Add its entries to `DATA`.
+  3. Open a pull request and check the Cloudflare preview.
+- **Size limit:** Cloudflare's limit is 25 MiB **per file**, and the largest document is about 2.7 MB,
+  so the library can keep growing.
 - **Content source:** the profiles, partnership data and documents come from the CSI research pipeline in
-  [`kianvargo/CedarsSinaiInternational`](https://github.com/kianvargo/CedarsSinaiInternational).
-  That pipeline drafts each profile from public sources and checks it with independent verifier agents.
-  To update the site, regenerate the content there and rebuild this page. There is no build script in
-  this repository yet.
+  [`kianvargo/CedarsSinaiInternational`](https://github.com/kianvargo/CedarsSinaiInternational), which
+  drafts each profile from public sources and checks it with independent verifier agents.
 
 ## Notes and caveats
 
@@ -66,7 +79,7 @@ click them, which needs a modern browser that supports `DecompressionStream`.
   - China, Egypt, Vietnam and Indonesia photos come from Wikimedia Commons, with credits shown on the page.
   - The **Singapore image is AI-generated** (not a photograph).
   - The **India image's licensing is still under review**.
-- **File size:** `index.html` is about 45 MB. GitHub shows a warning for files over 50 MB and rejects
-  files over 100 MB, so adding more countries may require moving the documents out of the page.
+- **Public files:** every file in `files/` can be opened by anyone with the site address (unless the
+  site is protected with Cloudflare Access) and is visible in this public repository.
 - **Public repository:** keep CSI-internal material (patient volumes, revenue, internal contacts or the
   completed CSI assessments) out of this repo.
