@@ -1,7 +1,0 @@
-# Files in the repository that should not be published on the website
-.git
-.github
-tools
-README.md
-wrangler.jsonc
-.assetsignore
