@@ -33,8 +33,9 @@ including the downloadable documents, is built into one file, `index.html`.
 No installation, build step or server is needed.
 
 - **Locally:** download `index.html` and open it in a recent version of Chrome, Edge, Firefox or Safari.
-- **Online:** turn on GitHub Pages for this repository (Settings → Pages → deploy from the `main` branch,
-  root folder). The site will then be at `https://kianvargo.github.io/CSI_website/`.
+- **Online:** the site is hosted on Cloudflare, which is connected to this repository. Every push to
+  `main` triggers a Cloudflare build and deploy. Make changes on a branch and open a pull request so the
+  Cloudflare preview can be checked before merging.
 
 The page makes no network requests. The map, data, images and documents are all embedded, so it also
 works offline. Downloads are stored compressed inside the page and unpacked by the browser when you
@@ -42,7 +43,7 @@ click them, which needs a modern browser that supports `DecompressionStream`.
 
 ## How it is built
 
-- One HTML file (~45 MB) with inline CSS and JavaScript, and no external libraries.
+- One HTML file (about 25 MB) with inline CSS and JavaScript, and no external libraries.
 - All content lives in a single `DATA` object inside the page:
   - `profiles`: one entry per country (facts, research sections, document list, image, credit)
   - `partners` / `sites`: partnership records and their map positions
@@ -66,7 +67,8 @@ click them, which needs a modern browser that supports `DecompressionStream`.
   - China, Egypt, Vietnam and Indonesia photos come from Wikimedia Commons, with credits shown on the page.
   - The **Singapore image is AI-generated** (not a photograph).
   - The **India image's licensing is still under review**.
-- **File size:** `index.html` is about 45 MB. GitHub shows a warning for files over 50 MB and rejects
-  files over 100 MB, so adding more countries may require moving the documents out of the page.
+- **File size:** `index.html` is 25,977,365 bytes. Cloudflare's limit is 25 MiB (26,214,400 bytes) per
+  file, which leaves only about 230 KB of room. Adding another country with embedded documents would
+  exceed it, so the documents will need to move out of the page into separate files first.
 - **Public repository:** keep CSI-internal material (patient volumes, revenue, internal contacts or the
   completed CSI assessments) out of this repo.
