@@ -164,6 +164,7 @@ to how it was within minutes.
 
 | Country | Updated | Documents |
 |---|---|---|
+| Australia | Oct 2026 | All six |
 | China | Sep 2026 | Profile and sources (no summary yet) |
 | Egypt | Oct 2026 | All six |
 | India | Sep 2026 | All six |
