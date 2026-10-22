@@ -169,6 +169,7 @@ to how it was within minutes.
 | Egypt | Oct 2026 | All six |
 | India | Sep 2026 | All six |
 | Indonesia | Oct 2026 | All six |
+| New Zealand | Oct 2026 | All six |
 | Nigeria | Oct 2026 | All six |
 | Singapore | Oct 2026 | All six |
 | Vietnam | Sep 2026 | Profile and sources (no summary yet) |
