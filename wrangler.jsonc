@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers settings for the static Country Intelligence site.
+  // "name" must match the Worker in the Cloudflare dashboard.
+  "name": "csi-website",
+  "compatibility_date": "2026-01-01",
+  // Publish this folder as static files; .assetsignore keeps .git, .claude, tools and this file out.
+  "assets": { "directory": "." },
+  // Required by `npx wrangler preview`, which builds a preview link for every non-main branch.
+  "previews": {}
+}
