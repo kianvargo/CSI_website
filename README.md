@@ -172,6 +172,7 @@ to how it was within minutes.
 | New Zealand | Oct 2026 | All six |
 | Nigeria | Oct 2026 | All six |
 | Singapore | Oct 2026 | All six |
+| Spain | Oct 2026 | All six |
 | Vietnam | Sep 2026 | Profile and sources (no summary yet) |
 
 **Partnership map:** 20 Cedars-Sinai partnerships in 11 countries, last checked 1 October 2026.
